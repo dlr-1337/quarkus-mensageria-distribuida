@@ -1,0 +1,131 @@
+{
+  "info": {
+    "_postman_id": "4d3a4d8a-cf85-4ba8-8ebc-9f12f48bcb01",
+    "name": "quarkus-mensagens",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Collection para validacao da API REST de mensageria em Quarkus."
+  },
+  "item": [
+    {
+      "name": "01 - GET inicial /mensagens",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/mensagens",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "mensagens"
+          ]
+        },
+        "description": "Valida o estado inicial da lista em memoria."
+      }
+    },
+    {
+      "name": "02 - POST /mensagens",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"remetente\": \"alice\",\n  \"conteudo\": \"Ola do POST\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/mensagens",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "mensagens"
+          ]
+        },
+        "description": "Cria a primeira mensagem e deixa o id 1 pronto para as demais chamadas."
+      }
+    },
+    {
+      "name": "03 - GET /mensagens/1",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/mensagens/1",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "mensagens",
+            "1"
+          ]
+        },
+        "description": "Busca a mensagem criada no passo anterior."
+      }
+    },
+    {
+      "name": "04 - GET /mensagens/999",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/mensagens/999",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "mensagens",
+            "999"
+          ]
+        },
+        "description": "Consulta um id inexistente para demonstrar 404."
+      }
+    },
+    {
+      "name": "05 - DELETE /mensagens/1",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/mensagens/1",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "mensagens",
+            "1"
+          ]
+        },
+        "description": "Remove a mensagem criada anteriormente."
+      }
+    },
+    {
+      "name": "06 - GET /mensagens/1 apos DELETE",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/mensagens/1",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "mensagens",
+            "1"
+          ]
+        },
+        "description": "Comprova que a mensagem nao existe mais depois da exclusao."
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080"
+    }
+  ]
+}
